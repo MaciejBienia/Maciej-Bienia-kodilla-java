@@ -1,4 +1,5 @@
 package com.kodilla.testing.collection;
+import com.kodilla.testing.collection.OddNumbersExterminator;
 import org.junit.*;
 import java.util.*;
 
@@ -27,16 +28,16 @@ public class CollectionTestSuite {
         //Given
         OddNumbersExterminator exterminator = new OddNumbersExterminator();
         ArrayList<Integer> numbers = new ArrayList<>();
-        for(int i = 0; i < 10; i++){
+        for(int i = 0; i < 100; i++){
             numbers.add(i);
         }
-        ArrayList<Integer> evenNumbers = new ArrayList<>();
-        for(int j = 0; j < 10; j += 2) {
-            evenNumbers.add(j);
+        ArrayList<Integer> theEvenNumbers = new ArrayList<>();
+        for(int j = 0; j < 100; j += 2) {
+            theEvenNumbers.add(j);
         }
         //When
         exterminator.exterminate(numbers);
         //Then
-        Assert.assertEquals(evenNumbers, numbers);
+        Assert.assertEquals(theEvenNumbers, exterminator.exterminate(numbers));
     }
 }

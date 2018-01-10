@@ -3,11 +3,13 @@ import java.util.*;
 
 public class OddNumbersExterminator {
 
-    public void exterminate(ArrayList<Integer> numbers) {
-        for(int i = 0; i < numbers.size(); i++) {
-            if(numbers.get(i) % 2 != 0) {
-                numbers.remove(numbers.get(i));
+    public ArrayList<Integer> exterminate(ArrayList<Integer> numbers) {
+        ArrayList<Integer> evenNumbers = new ArrayList<>();
+        for(Integer number: numbers) {
+            if(number % 2 == 0) {
+                evenNumbers.add(number);
             }
         }
+        return evenNumbers;
     }
 }
