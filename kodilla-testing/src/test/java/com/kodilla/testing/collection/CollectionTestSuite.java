@@ -1,5 +1,4 @@
 package com.kodilla.testing.collection;
-import com.kodilla.testing.collection.OddNumbersExterminator;
 import org.junit.*;
 import java.util.*;
 
@@ -21,7 +20,7 @@ public class CollectionTestSuite {
         //When
         exterminator.exterminate(numbers);
         //Then
-        Assert.assertEquals(emptyList, numbers);
+        Assert.assertEquals(emptyList, exterminator.exterminate(numbers));
     }
     @Test
     public void testOddNumbersExterminatorNormalList(){
