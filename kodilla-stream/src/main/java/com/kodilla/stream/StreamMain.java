@@ -9,5 +9,6 @@ public class StreamMain {
         poemBeautifier.beautify("Jacek ma psa", text -> "***" + text + "***");
         poemBeautifier.beautify("Paweł ma papugę", text -> ">>>" + text + "<<<");
         poemBeautifier.beautify("Ania ma królika", text -> text.toUpperCase());
+        poemBeautifier.beautify("Ania ma królika", text -> text.replace("a", "A"));
     }
 }
