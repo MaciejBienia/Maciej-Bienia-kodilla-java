@@ -9,10 +9,9 @@ public interface ArrayOperations {
                 .map(n -> numbers[n])
                 .forEach(System.out::println);
 
-        OptionalDouble average = IntStream.range(0, numbers.length)
+        Double average = IntStream.range(0, numbers.length)
                 .map(n -> numbers[n])
-                .average();
-        double theAverage = average.getAsDouble();
-        return theAverage;
+                .average().orElse(0);
+        return average;
     }
 }
