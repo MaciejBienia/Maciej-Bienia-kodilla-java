@@ -8,7 +8,7 @@ public class FlightExceptionHandling {
 
         try {
 
-            flightFinder.findFlight(new Flight("Schiphol", "Heathrow"));
+            flightFinder.findFlight(new Flight("Schiphol", "Pyrzowice"));
 
         } catch (RouteNotFoundException e) {
 
