@@ -8,7 +8,7 @@ public class ExceptionHandling {
 
         try {
 
-            secondChallenge.probablyIWillThrowException(1.9, 1.4);
+            secondChallenge.probablyIWillThrowException(2.0, 1.4);
             System.out.println("Done!");
 
         } catch (Exception e) {
