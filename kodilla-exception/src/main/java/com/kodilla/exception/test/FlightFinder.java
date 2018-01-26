@@ -21,8 +21,7 @@ public class FlightFinder {
             throw new RouteNotFoundException("One or both of the choosen airports haven't been found in our database.");
 
         }
-        if(airports.getOrDefault(flight.getDepartureAirport(), true) &&
-                airports.getOrDefault(flight.getArrivalAirport(), true)) {
+        if(airports.getOrDefault(flight.getArrivalAirport(), true)) {
 
             System.out.println("Flight has been found!");
             return true;
