@@ -11,7 +11,7 @@ public class Game {
     private final static String INSTRUCTION = "\nKlawisz 1 - zagranie [KAMIEŃ] \nKlawisz 2 - zagranie [PAPIER] " +
             "\nKlawisz 3 - zagranie [NOŻYCE] \nKlawisz x - zakończenie gry \nKlawisz n - uruchomienie gry od nowa";
 
-    private final static String ASK_ROUNDS_QUANTITY = "\nPodaj ilość wygranych rund po których następuje ostateczne " +
+    public final static String ASK_ROUNDS_QUANTITY = "\nPodaj ilość wygranych rund po których następuje ostateczne " +
             "zwycięstwo danego gracza: ";
 
     private final static String FINISH_CURRENT_GAME_QUESTION = "Czy na pewno zakończyć aktualną grę? Wciśnij t jeśli " +
@@ -32,13 +32,7 @@ public class Game {
     public void run() {
         System.out.println(WELCOME_GET_NAME);
         this.playerName = scanner.nextLine();
-        System.out.println(ASK_ROUNDS_QUANTITY);
-        this.numberOfRounds = scanner.nextInt();
-
-        while(numberOfRounds < 1) {
-            System.out.println("Podaj wartość większą od 0!");
-            this.numberOfRounds = scanner.nextInt();
-        }
+        this.numberOfRounds = UserDialogs.getNumberOfRounds();
         System.out.println("\n" + playerName + "! Oto instrukcja do gry:");
         System.out.println(INSTRUCTION);
 
@@ -46,7 +40,7 @@ public class Game {
             roundsCounter++;
             System.out.println("\nRunda " + roundsCounter);
             System.out.println("Wybierz swoje zagranie: ");
-            String choice = scanner.next();
+            String choice = scanner.next().toUpperCase();
             String computerChoice = computer.computerChoice();
 
             if(choice.equals("1")) {
