@@ -6,10 +6,7 @@ public class Application {
 
         MovieStore movieStore = new MovieStore();
         String result = movieStore.getMovies().values().stream()
-                .map(s -> s.toString())
-                .map(s -> s.replace(", ", "!"))
-                .map(s -> s.replace("]",""))
-                .map(s -> s.replace("[", ""))
+                .flatMap(s -> s.parallelStream())
                 .collect(Collectors.joining("!"));
 
         System.out.println(result);
