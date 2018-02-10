@@ -1,13 +1,15 @@
 package com.kodilla.good.patterns.challenges.flights;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class FlightFinder {
 
+    FlightTable flightTable = new FlightTable();
+
     public void findFlightsFrom(String departureFrom) {
 
         System.out.println("\nAll possible flights from " + departureFrom + ":");
-        FlightTable flightTable = new FlightTable();
         flightTable.flightList().stream()
                 .filter(flight -> flight.getDepartureFrom().equals(departureFrom))
                 .forEach(System.out::println);
@@ -16,32 +18,29 @@ public class FlightFinder {
     public void findFlightsTo(String arrivalTo) {
 
         System.out.println("\nAll possible flights to " + arrivalTo + ":");
-        FlightTable flightTable = new FlightTable();
         flightTable.flightList().stream()
                 .filter(flight -> flight.getArrivalTo().equals(arrivalTo))
                 .forEach(System.out::println);
     }
 
-    public void findViaFlights(String departureFrom, String arrivalTo) {
-        FlightTable flightTable = new FlightTable();
+    public void findViaFlights(String departureFrom, String viaAirport, String arrivalTo) {
 
-        List<Flight> departuresList = flightTable.flightList().stream()
-                .filter(flight -> flight.getDepartureFrom().equals(departureFrom))
+        List<Flight> departuresToViaList = flightTable.flightList().stream()
+                .filter(flight -> flight.getDepartureFrom().equals(departureFrom) &&
+                        flight.getArrivalTo().equals(viaAirport))
                 .collect(Collectors.toList());
 
-        List<Flight> arrivalsList = flightTable.flightList().stream()
-                .filter(flight -> flight.getArrivalTo().equals(arrivalTo))
+        List<Flight> arrivalFromViaList = flightTable.flightList().stream()
+                .filter(flight -> flight.getDepartureFrom().equals(viaAirport) &&
+                        flight.getArrivalTo().equals(arrivalTo))
                 .collect(Collectors.toList());
 
-        for(Flight firstFlight: departuresList) {
-            String viaAirport = firstFlight.getArrivalTo();
-            for(Flight secondFlight: arrivalsList) {
-                if(viaAirport.equals(secondFlight.getDepartureFrom())) {
-                    System.out.println("\nYou have choosen the flight [" + departureFrom + " -> " + arrivalTo +
-                            "]\nDirect flight is not available, but you can travel in the way below: \n" +
-                            firstFlight + "\n" + secondFlight);
-                }
-            }
+        if(departuresToViaList.size() == arrivalFromViaList.size()) {
+            System.out.println("\nProposed flights for travel route [" + departureFrom + " -> " + arrivalTo + "] with " +
+                    "choosen via-airport [" + viaAirport + "] are:\n" + departuresToViaList + "\n" + arrivalFromViaList);
+        } else {
+            System.out.println("\nNo flights [" + departureFrom + " -> " + arrivalTo + "] via [" + viaAirport +
+                    "] available.");
         }
     }
 }
