@@ -35,12 +35,12 @@ public class FlightFinder {
                         flight.getArrivalTo().equals(arrivalTo))
                 .collect(Collectors.toList());
 
-        if(departuresToViaList.size() == arrivalFromViaList.size()) {
-            System.out.println("\nProposed flights for travel route [" + departureFrom + " -> " + arrivalTo + "] with " +
-                    "choosen via-airport [" + viaAirport + "] are:\n" + departuresToViaList + "\n" + arrivalFromViaList);
-        } else {
+        if(departuresToViaList.size() == 0 || arrivalFromViaList.size() == 0) {
             System.out.println("\nNo flights [" + departureFrom + " -> " + arrivalTo + "] via [" + viaAirport +
                     "] available.");
+        } else {
+            System.out.println("\nProposed flights for travel route [" + departureFrom + " -> " + arrivalTo + "] with " +
+                    "choosen via-airport [" + viaAirport + "] are:\n" + departuresToViaList + "\n" + arrivalFromViaList);
         }
     }
 }
