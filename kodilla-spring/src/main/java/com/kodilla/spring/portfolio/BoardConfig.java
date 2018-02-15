@@ -10,6 +10,7 @@ public class BoardConfig {
     public Board getBoard() {
         return new Board(getToDoList(), getInProgressList(), getDoneList());
     }
+
     private TaskList getToDoList() {
         return new TaskList();
     }
