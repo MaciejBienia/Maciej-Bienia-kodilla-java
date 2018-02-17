@@ -33,7 +33,7 @@ public final class Library extends Prototype{
         for(Book theBook : books) {
             Book clonedBook = new Book(theBook.getAuthor(), theBook.getTitle(), theBook.getPublicationDate());
             clonedLibrary.getBooks().add(clonedBook);
-            }
+        }
         return clonedLibrary;
     }
 
