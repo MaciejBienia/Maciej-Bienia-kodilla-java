@@ -25,10 +25,7 @@ public class ShoppingTask implements Task {
 
     @Override
     public boolean isTaskExecuted() {
-            if (LocalTime.now().isAfter(LocalTime.of(10, 00))) {
-                return true;
-            }
-        return false;
+        return (LocalTime.now().isAfter(LocalTime.of(10, 00)));
     }
 
     public String getWhatToBuy() {

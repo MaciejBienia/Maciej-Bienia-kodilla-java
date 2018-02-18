@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class TaskFactoryTestSuite {
     @Test
-    public void TaskFactoryTests() {
+    public void TaskFactoryTest() {
         //Given
         TaskFactory taskFactory = new TaskFactory();
         //When

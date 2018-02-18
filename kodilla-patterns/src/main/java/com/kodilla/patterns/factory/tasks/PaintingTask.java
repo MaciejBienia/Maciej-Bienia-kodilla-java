@@ -25,10 +25,7 @@ public class PaintingTask implements Task{
 
     @Override
     public boolean isTaskExecuted() {
-        if(LocalDate.now().isBefore(LocalDate.of(2018, 7, 1))) {
-            return false;
-        }
-        return true;
+        return (LocalDate.now().isAfter(LocalDate.of(2018, 7, 1)));
     }
 
     public String getColor() {

@@ -25,11 +25,7 @@ public class DrivingTask implements Task{
 
     @Override
     public boolean isTaskExecuted() {
-        if (LocalDate.now().isBefore(LocalDate.of(2018, 5, 1))) {
-            return false;
-        } else {
-            return true;
-        }
+        return (LocalDate.now().isAfter(LocalDate.of(2018, 5, 1)));
     }
 
     public String getWhere() {
