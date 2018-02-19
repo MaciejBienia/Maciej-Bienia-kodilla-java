@@ -3,6 +3,9 @@ package com.kodilla.patterns.factory.tasks;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class TaskFactoryTestSuite {
     @Test
     public void TaskFactoryTest() {
@@ -14,15 +17,30 @@ public class TaskFactoryTestSuite {
         Task weekendTrip = taskFactory.makeTask(TaskFactory.DRIVING);
         //Then
         Assert.assertEquals("Morning shopping", morningShopping.getTaskName());
+        System.out.println(     ((ShoppingTask)morningShopping).getQuantity()    );
         Assert.assertEquals("Shopping in progress", morningShopping.executeTask());
-        Assert.assertTrue(morningShopping.isTaskExecuted());
+
+        if(LocalTime.now().isAfter(LocalTime.of(10,00))) {
+            Assert.assertTrue(morningShopping.isTaskExecuted());
+        } else {
+            Assert.assertTrue(morningShopping.isTaskExecuted());
+        }
 
         Assert.assertEquals("Summer painting", summerPainting.getTaskName());
         Assert.assertEquals("Painting in progress", summerPainting.executeTask());
-        Assert.assertFalse(summerPainting.isTaskExecuted());
+
+        if (LocalDate.now().isBefore(LocalDate.of(2108, 7, 1))) {
+            Assert.assertFalse(summerPainting.isTaskExecuted());
+        } else {
+            Assert.assertTrue(summerPainting.isTaskExecuted());
+        }
 
         Assert.assertEquals("Long weekend trip", weekendTrip.getTaskName());
         Assert.assertEquals("Driving in progress", weekendTrip.executeTask());
-        Assert.assertFalse(weekendTrip.isTaskExecuted());
+        if (LocalDate.now().isBefore(LocalDate.of(2108, 5, 1))) {
+            Assert.assertFalse(weekendTrip.isTaskExecuted());
+        } else {
+            Assert.assertTrue(weekendTrip.isTaskExecuted());
+        }
     }
 }
