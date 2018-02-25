@@ -11,7 +11,7 @@ public class Computer {
         Random generator = new Random();
         String theComputerChoice = String.valueOf(generator.nextInt(3) + 1);
 
-        if(theComputerChoice.equals("1")) {
+        if (theComputerChoice.equals("1")) {
             theComputerChoice = ROCK;
         } else if(theComputerChoice.equals("2")) {
             theComputerChoice = PAPER;
