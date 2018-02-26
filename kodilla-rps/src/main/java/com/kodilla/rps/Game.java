@@ -1,47 +1,30 @@
 package com.kodilla.rps;
 import java.util.Scanner;
 
+import static com.kodilla.rps.PlayerDialogs.PAPER;
+import static com.kodilla.rps.PlayerDialogs.ROCK;
+import static com.kodilla.rps.PlayerDialogs.SCISSORS;
+
 public class Game {
     private String playerName;
     private int numberOfRounds;
-
-    private final static String WELCOME_GET_NAME = "            !!! WITAJ W GRZE KAMIEŃ PAPIER NOŻYCE !!! \nKamień " +
-            "zgniata nożyce, papier przykrywa kamień, nożyce tną papier.\n\nPodaj swoje imię: ";
-
-    private final static String INSTRUCTION = "\nKlawisz 1 - zagranie [KAMIEŃ] \nKlawisz 2 - zagranie [PAPIER] " +
-            "\nKlawisz 3 - zagranie [NOŻYCE] \nKlawisz x - zakończenie gry \nKlawisz n - uruchomienie gry od nowa";
-
-    public final static String ASK_ROUNDS_QUANTITY = "\nPodaj ilość wygranych rund po których następuje ostateczne " +
-            "zwycięstwo danego gracza: ";
-
-    private final static String FINISH_CURRENT_GAME_QUESTION = "Czy na pewno zakończyć aktualną grę? Wciśnij t jeśli " +
-            "tak, n jeśli nie";
-
-    private final static String FINISH_GAME_QUESTION = "Czy na pewno zakończyć grę? Wciśnij t jeśli tak, n jeśli nie.";
-
-    public final static String ROCK = "[KAMIEŃ]";
-    public final static String PAPER = "[PAPIER]";
-    public static String SCISSORS = "[NOŻYCE]";
-
     private int roundsCounter = 0;
 
     Scanner scanner = new Scanner(System.in);
-    Computer computer = new Computer();
+    Opponent opponent = new Opponent();
     Referee referee = new Referee();
 
     public void run() {
-        System.out.println(WELCOME_GET_NAME);
-        this.playerName = scanner.nextLine();
-        this.numberOfRounds = UserDialogs.getNumberOfRounds();
-        System.out.println("\n" + playerName + "! Oto instrukcja do gry:");
-        System.out.println(INSTRUCTION);
+        this.playerName = PlayerDialogs.getPlayerName();
+        this.numberOfRounds = PlayerDialogs.getNumberOfRounds();
+        System.out.println("\n" + playerName + "! Oto instrukcja do gry:" + PlayerDialogs.INSTRUCTION);
 
-        while(referee.getUserScore() < numberOfRounds && referee.getComputerScore() < numberOfRounds) {
+        while(referee.getUserScore() < numberOfRounds && referee.getOpponentScore() < numberOfRounds) {
             roundsCounter++;
             System.out.println("\nRunda " + roundsCounter);
             System.out.println("Wybierz swoje zagranie: ");
             String choice = scanner.next().toUpperCase();
-            String computerChoice = computer.computerChoice();
+            String opponentChoice = opponent.opponentChoice();
 
             if(choice.equals("1")) {
                 choice = ROCK;
@@ -50,27 +33,27 @@ public class Game {
             } else if(choice.equals("3")) {
                 choice = SCISSORS;
             } else if(choice.equals("n") || choice.equals("N")) {
-                System.out.println(FINISH_CURRENT_GAME_QUESTION);
+                System.out.println(PlayerDialogs.FINISH_CURRENT_GAME_QUESTION);
                 String newGame = scanner.next();
                 if(newGame.equals("t") || newGame.equals("T")) {
                     new Game().run();
                 }
             } else if(choice.equals("x") || choice.equals("X")) {
-                System.out.println(FINISH_GAME_QUESTION);
+                System.out.println(PlayerDialogs.FINISH_GAME_QUESTION);
                 String finish = scanner.next();
                 if(finish.equals("t") || finish.equals("T")) {
                     System.exit(0);
                 }
             } else {
-                System.out.println("Wprowadź poprawne dane!");
+                System.out.println("Wprowadź dane zgodne z instrukcją!");
             }
-            referee.compare(choice, computerChoice);
+            referee.compare(choice, opponentChoice);
             System.out.println("\n[" + playerName + " - Komputer]: \n     [" + referee.getUserScore() + " : "
-                    + referee.getComputerScore() + "]");
+                    + referee.getOpponentScore() + "]");
         }
         if (referee.getUserScore() == numberOfRounds) {
             System.out.println("\n!!! WYGRAŁEŚ W CAŁEJ GRZE !!!");
-        } else if (referee.getComputerScore() == numberOfRounds) {
+        } else if (referee.getOpponentScore() == numberOfRounds) {
             System.out.println("\n!!! GRĘ WYGRAŁ KOMPUTER !!!");
         }
     }

@@ -1,21 +1,21 @@
 package com.kodilla.rps;
-import static com.kodilla.rps.Game.PAPER;
-import static com.kodilla.rps.Game.ROCK;
-import static com.kodilla.rps.Game.SCISSORS;
+import static com.kodilla.rps.PlayerDialogs.PAPER;
+import static com.kodilla.rps.PlayerDialogs.ROCK;
+import static com.kodilla.rps.PlayerDialogs.SCISSORS;
 
 public class Referee {
     private int userScore = 0;
-    private int computerScore = 0;
+    private int opponentScore = 0;
 
     public int getUserScore() {
         return userScore;
     }
 
-    public int getComputerScore() {
-        return computerScore;
+    public int getOpponentScore() {
+        return opponentScore;
     }
 
-    public void compare (String userChoice, String computerChoice) {
+    public void compare (String userChoice, String opponentChoice) {
 
         String draw = "\n>>> Remis w tej rundzie <<<";
         String computerWin = "\n\n>>> Komputer wygrał w tej rundzie <<<";
@@ -24,26 +24,26 @@ public class Referee {
         String scissorsBeatPaper = "\n" + SCISSORS + " tną " + PAPER;
         String rockBeatScissors = "\n" + ROCK + " zgniata " + SCISSORS;
 
-        if(userChoice.equals(computerChoice)) {
-            System.out.println("Wybrałeś " + userChoice + " <<<>>> Komputer wybrał " + computerChoice + draw);
-        } else if(userChoice.equals(ROCK) && computerChoice.equals(PAPER)) {
+        if(userChoice.equals(opponentChoice)) {
+            System.out.println("Wybrałeś " + userChoice + " <<<>>> Komputer wybrał " + opponentChoice + draw);
+        } else if(userChoice.equals(ROCK) && opponentChoice.equals(PAPER)) {
             System.out.println("Wybrałeś " + ROCK + " <<<>>> Komputer wybrał " + PAPER + paperBeatsRock + computerWin);
-            computerScore += 1;
-        } else if(userChoice.equals(ROCK) && computerChoice.equals(SCISSORS)) {
+            opponentScore += 1;
+        } else if(userChoice.equals(ROCK) && opponentChoice.equals(SCISSORS)) {
             System.out.println("Wybrałeś " + ROCK + " <<<>>> Komputer wybrał " + SCISSORS + rockBeatScissors + userWin);
             userScore += 1;
-        } else if(userChoice.equals(PAPER) && computerChoice.equals(ROCK)) {
+        } else if(userChoice.equals(PAPER) && opponentChoice.equals(ROCK)) {
             System.out.println("Wybrałeś " + PAPER + " <<<>>> Komputer wybrał " + ROCK + paperBeatsRock + userWin);
             userScore += 1;
-        } else if(userChoice.equals(PAPER) && computerChoice.equals(SCISSORS)) {
+        } else if(userChoice.equals(PAPER) && opponentChoice.equals(SCISSORS)) {
             System.out.println("Wybrałeś " + PAPER + " <<<>>> Komputer wybrał " + SCISSORS + scissorsBeatPaper +
                     computerWin);
-            computerScore += 1;
-        } else if(userChoice.equals(SCISSORS) && computerChoice.equals(ROCK)) {
+            opponentScore += 1;
+        } else if(userChoice.equals(SCISSORS) && opponentChoice.equals(ROCK)) {
             System.out.println("Wybrałeś " + SCISSORS + " <<<>>> Komputer wybrał " + ROCK + rockBeatScissors +
                     computerWin);
-            computerScore += 1;
-        } else if(userChoice.equals(SCISSORS) && computerChoice.equals(PAPER)) {
+            opponentScore += 1;
+        } else if(userChoice.equals(SCISSORS) && opponentChoice.equals(PAPER)) {
             System.out.println("Wybrałeś " + SCISSORS + " <<<>>> Komputer wybrał " + PAPER + scissorsBeatPaper + userWin);
             userScore += 1;
         }
