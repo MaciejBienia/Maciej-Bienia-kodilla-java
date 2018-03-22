@@ -11,6 +11,7 @@ public class Game {
     private int roundsCounter = 0;
 
 
+
     Scanner scanner = new Scanner(System.in);
     Opponent opponent = new Opponent();
     Referee referee = new Referee();
