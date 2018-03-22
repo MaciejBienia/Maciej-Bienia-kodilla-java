@@ -17,7 +17,7 @@ public class Game {
     public void run() {
         this.playerName = PlayerDialogs.getPlayerName();
         this.numberOfRounds = PlayerDialogs.getNumberOfRounds();
-        System.out.println("\n" + playerName + "! Oto instrukcja do gry:" + PlayerDialogs.INSTRUCTION);
+        System.out.println("\n" + playerName + PlayerDialogs.INSTRUCTION);
 
         while(referee.getUserScore() < numberOfRounds && referee.getOpponentScore() < numberOfRounds) {
             roundsCounter++;
@@ -32,16 +32,16 @@ public class Game {
                 choice = PAPER;
             } else if(choice.equals("3")) {
                 choice = SCISSORS;
-            } else if(choice.equals("n") || choice.equals("N")) {
+            } else if(choice.equals("N")) {
                 System.out.println(PlayerDialogs.FINISH_CURRENT_GAME_QUESTION);
-                String newGame = scanner.next();
-                if(newGame.equals("t") || newGame.equals("T")) {
+                String newGame = scanner.next().toUpperCase();
+                if(newGame.equals("T")) {
                     new Game().run();
                 }
-            } else if(choice.equals("x") || choice.equals("X")) {
+            } else if(choice.equals("X")) {
                 System.out.println(PlayerDialogs.FINISH_GAME_QUESTION);
-                String finish = scanner.next();
-                if(finish.equals("t") || finish.equals("T")) {
+                String finish = scanner.next().toUpperCase();
+                if(finish.equals("T")) {
                     System.exit(0);
                 }
             } else {

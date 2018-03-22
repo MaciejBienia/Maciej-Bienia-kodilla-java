@@ -7,7 +7,7 @@ public class PlayerDialogs {
     public final static String GET_NAME = "            !!! WITAJ W GRZE KAMIEŃ PAPIER NOŻYCE !!! \nKamień " +
             "zgniata nożyce, papier przykrywa kamień, nożyce tną papier.\n\nPodaj swoje imię: ";
 
-    public final static String INSTRUCTION = "\nKlawisz 1 - zagranie [KAMIEŃ] \nKlawisz 2 - zagranie [PAPIER] " +
+    public final static String INSTRUCTION = "! Oto instrukcja do gry: \n\nKlawisz 1 - zagranie [KAMIEŃ] \nKlawisz 2 - zagranie [PAPIER] " +
             "\nKlawisz 3 - zagranie [NOŻYCE] \nKlawisz x - zakończenie gry \nKlawisz n - uruchomienie gry od nowa";
 
     public final static String ASK_ROUNDS_QUANTITY = "\nPodaj ilość wygranych rund po których następuje ostateczne " +
@@ -44,5 +44,6 @@ public class PlayerDialogs {
                 System.out.println("Podaj poprawną liczbę!");
             }
         }
+
     }
 }
