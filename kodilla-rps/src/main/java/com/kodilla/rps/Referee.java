@@ -15,6 +15,7 @@ public class Referee {
         return opponentScore;
     }
 
+    int roundsCounter = 1;
     public void compare (String userChoice, String opponentChoice) {
 
         String draw = "\n>>> Remis w tej rundzie <<<";
@@ -23,6 +24,7 @@ public class Referee {
         String paperBeatsRock = "\n" + PAPER + " przykrywa " + ROCK;
         String scissorsBeatPaper = "\n" + SCISSORS + " tną " + PAPER;
         String rockBeatScissors = "\n" + ROCK + " zgniata " + SCISSORS;
+        roundsCounter++;
 
         if(userChoice.equals(opponentChoice)) {
             System.out.println("Wybrałeś " + userChoice + " <<<>>> Komputer wybrał " + opponentChoice + draw);

@@ -1,63 +1,50 @@
 package com.kodilla.rps;
 import java.util.Scanner;
 
-import static com.kodilla.rps.PlayerDialogs.PAPER;
-import static com.kodilla.rps.PlayerDialogs.ROCK;
-import static com.kodilla.rps.PlayerDialogs.SCISSORS;
+import static com.kodilla.rps.PlayerDialogs.*;
 
 public class Game {
     private String playerName;
     private int numberOfRounds;
-    private int roundsCounter = 0;
-
-
 
     Scanner scanner = new Scanner(System.in);
     Opponent opponent = new Opponent();
     Referee referee = new Referee();
 
-
     public void run() {
         this.playerName = PlayerDialogs.getPlayerName();
         this.numberOfRounds = PlayerDialogs.getNumberOfRounds();
-        System.out.println("\n" + playerName + PlayerDialogs.INSTRUCTION);
+        PlayerDialogs.showInstruction(playerName);
 
         while(referee.getUserScore() < numberOfRounds && referee.getOpponentScore() < numberOfRounds) {
-            roundsCounter++;
-            System.out.println("\nRunda " + roundsCounter);
-            System.out.println("Wybierz swoje zagranie: ");
-            String choice = scanner.next().toUpperCase();
+            System.out.println("\n        Runda " + referee.roundsCounter);
+            String choice = PlayerDialogs.getPlayerChoice();
             String opponentChoice = opponent.opponentChoice();
 
-            if(choice.equals("1")) {
-                choice = ROCK;
-            } else if(choice.equals("2")) {
-                choice = PAPER;
-            } else if(choice.equals("3")) {
-                choice = SCISSORS;
-            } else if(choice.equals("N")) {
-                System.out.println(PlayerDialogs.FINISH_CURRENT_GAME_QUESTION);
+            if (choice.equals(ROCK) || choice.equals(PAPER) || choice.equals(SCISSORS)) {
+                referee.compare(choice, opponentChoice);
+                System.out.println("\n[" + playerName + " - Komputer]  \n     [" + referee.getUserScore() + " : "
+                        + referee.getOpponentScore() + "]");
+            } else if (choice.equals("N")) {
+                PlayerDialogs.displayText(FINISH_CURRENT_GAME_QUESTION);
                 String newGame = scanner.next().toUpperCase();
                 if(newGame.equals("T")) {
                     new Game().run();
                 }
             } else if(choice.equals("X")) {
-                System.out.println(PlayerDialogs.FINISH_GAME_QUESTION);
+                PlayerDialogs.displayText(FINISH_GAME_QUESTION);
                 String finish = scanner.next().toUpperCase();
                 if(finish.equals("T")) {
                     System.exit(0);
                 }
             } else {
-                System.out.println("Wprowadź dane zgodne z instrukcją!");
+                PlayerDialogs.displayText(CHECK_DATA_QUESTION);
             }
-            referee.compare(choice, opponentChoice);
-            System.out.println("\n[" + playerName + " - Komputer]: \n     [" + referee.getUserScore() + " : "
-                    + referee.getOpponentScore() + "]");
         }
         if (referee.getUserScore() == numberOfRounds) {
-            System.out.println("\n!!! WYGRAŁEŚ W CAŁEJ GRZE !!!");
+            PlayerDialogs.displayText(PLAYER_WIN);
         } else if (referee.getOpponentScore() == numberOfRounds) {
-            System.out.println("\n!!! GRĘ WYGRAŁ KOMPUTER !!!");
+            PlayerDialogs.displayText(OPPONENT_WIN);
         }
     }
 }
